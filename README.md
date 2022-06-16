@@ -1,1 +1,2 @@
-# CUDA_C_programming
+# CUDA C programming
+разбора программирования на CUDA
