@@ -95,3 +95,6 @@ int main()
 return 0;
 }
 ```
+
+# Источники 
+PROFESSIONAL CUDA ® C Programmin. John Cheng, Max Grossman, Ty McKercher. Copyright © 2014 by John Wiley & Sons, Inc., Indianapolis, Indiana
