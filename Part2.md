@@ -10,4 +10,4 @@ Processors: 8 × Intel® Core™ i7-9700KF CPU @ 3.60GHz
 
 # CUDA Programming Model: Organizing Threads
 ---
-![alt text](https://github.com/Arturawesome/CUDA_C_programming/blob/main/figures/CUDA_fig_2_1.png)
+![alt text](https://github.com/Arturawesome/CUDA_C_programming/blob/main/figures/CUDA_fig_2_1.png/250x100)
