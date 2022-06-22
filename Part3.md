@@ -13,24 +13,40 @@ GPU: Nvidia GeForce GTX Titan X (3072 CUDA cores)
 # CUDA Programming Model: Launching a CUDA Kernel
 ---
 We are familiar with the following C/C++ function call syntax:
-```shell
+```C++
 function_name (argument list);
 ```
 To call the CUDA kernel, add a kernel’s execution configuration inside triple-angle-brackets:
-```shell
+```CUDA
 kernel_name <<<grid, block>>>(argument list);
 ```
+***grid*** - grid size in number of block
+***block*** - block size in number of threads
 
+The first value in the execution configuration is the grid dimension, the number of blocks to launch. The second value is the block dimension, the number of threads within each block. By specifying the grid and block dimensions, you configure:
+1. The total number of threads for a kernel
+2. The layout of the threads you want to employ for a kernel (схема потоков для ядра, которое вы хотите испольщовать)
 
+![](https://github.com/Arturawesome/CUDA_C_programming/blob/main/figures/CUDA_fig_2_6.png)
 
+For example, suppose you have 32 data elements for a calculation.You can group 8 elements into each block, and launch 4 blocks, or group all 32 elements into one block or each block just have one element, you have 32 blocks as follows:
+```CUDA
+kernel_name <<<4, 8>>>(argument list);
+kernel_name <<<1, 32>>>(argument list);
+kernel_name <<<32, 1>>>(argument list);
+```
+A kernel call is asynchronous with respect (по отношению) to the host thread. After a kernel is invoked, control returns to the host side immediately (немедленно). You can call the following function to force the host application to wait for all kernels to complete.
+```shell
+cudaError_t cudaDeviceSynchronize(void);
+```
+Some CUDA runtime APIs perform an implicit synchronization between the host and the device. When you use ***cudaMemcpy*** to copy data between the host and device, implicit synchronization at the host side is performed and the host application must wait for the data copy to complete.
+```CUDA
+cudaError_t cudaMemcpy(void* dst, const void* src, size_t count, cudaMemcpyKind kind);
+```
+> Unlike a C/C++ function call, all CUDA kernel launches are asynchronous. Control returns to the CPU immediately after the CUDA kernel is invoked.
 
-
-
-
-
-
-
-
+Type of cernel in CUDA you can see in table 2_2:
+![](https://github.com/Arturawesome/CUDA_C_programming/blob/main/figures/CUDA_Table_2_2.png)
 
 
 
