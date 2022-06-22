@@ -33,7 +33,7 @@ cudaError_t cudaMemcpy ( void* dst, const void* src, size_t count, cudaMemcpyKin
 4. cudaMemcpyDeviceToDevice
 
 # Example of code
-```shell
+```CUDA
 #include <stdlib.h>
 #include <ctime>
 #include <iostream>
