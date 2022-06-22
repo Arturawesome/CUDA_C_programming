@@ -48,7 +48,28 @@ cudaError_t cudaMemcpy(void* dst, const void* src, size_t count, cudaMemcpyKind 
 Type of cernel in CUDA you can see in table 2_2:
 ![](https://github.com/Arturawesome/CUDA_C_programming/blob/main/figures/CUDA_Table_2_2.png)
 
+The code example of realization of simple CUDA cernel and C++ function respectivelly:
+```CUDA
+__global__ void sumArraysOnGPU(double *mas1, double *mas2, double *sum)
+{
+    int i = threadIdx.x;
+    sum[i] = mas1[i] + mas2[i];
+}
+void sumArraysOnHost(double *mas1, double *mas2, double *sum, const int N)
+{
+    for(int i = 0; i < N; i++)
+    {
+        sum[i] = mas1[i] + mas2[i];
+    }
+}
+```
+You’ll notice that the loop (цикл) is missing (отсутствует), the built-in thread coordinate variables are used to replace the array index, and there is no reference to N as it is implicitly defined by only launching N threads(N нявно определяется при запуске ядра). Supposing a vector with the length of 32 elements, you can invoke the kernel with 32 threads as follows:
+```CUDA
+sumArraysOnGPU<<<1,32>>>(float *A, float *B, float *C);
+```
+ ***[See suplimentarty](https://github.com/Arturawesome/CUDA_C_programming/blob/main/Programs/prog_2_4.cu)***
 
 
-# Источники 
+
+# Bibliography 
 PROFESSIONAL CUDA ® C Programmin. John Cheng, Max Grossman, Ty McKercher. Copyright © 2014 by John Wiley & Sons, Inc., Indianapolis, Indiana
