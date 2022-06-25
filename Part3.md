@@ -10,8 +10,14 @@ GPU: Nvidia GeForce GTX Titan X (3072 CUDA cores)
 
 ---
 
-# CUDA Programming Model: Launching a CUDA Kernel
+# CUDA Programming Model: Launching a CUDA Kernel and timing
 ---
+
+---
+
+## Launching a CUDA Kernel
+---
+
 We are familiar with the following C/C++ function call syntax:
 ```C++
 function_name (argument list);
@@ -67,9 +73,28 @@ You’ll notice that the loop (цикл) is missing (отсутствует), th
 ```CUDA
 sumArraysOnGPU<<<1,32>>>(float *A, float *B, float *C);
 ```
- ***[See suplimentarty](https://github.com/Arturawesome/CUDA_C_programming/blob/main/Programs/prog_2_4.cu)***
+ 
+
+If you want make 2 - 3 dimensional grid or 2-3 dimensional block size, init index in kernel as:
 
 
+The code example of realization of simple CUDA cernel and C++ function respectivelly:
+```CUDA
+__global__ void sumArraysOnGPU(arguments)
+{
+    int i = 16 * (gridDim.x - 1) + threadIdx.x + 4 * threadIdx.y;
+  ...
+}
+```
+The equation form of ***int i = ...*** determind by yours conditions
+
+***[See suplimentarty, prog_2_4.cu](https://github.com/Arturawesome/CUDA_C_programming/blob/main/Programs/prog_2_4.cu)*** for realization of kernel.
+Very simmilar code was write in book from ***Bibliography***
+
+---
+
+## TIMING YOUR KERNEL
+---
 
 # Bibliography 
 PROFESSIONAL CUDA ® C Programmin. John Cheng, Max Grossman, Ty McKercher. Copyright © 2014 by John Wiley & Sons, Inc., Indianapolis, Indiana
