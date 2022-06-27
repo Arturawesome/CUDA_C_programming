@@ -30,7 +30,7 @@ CUDA организует сетки и блоки в трех измерени�
 The coordinate variable is of type uint3, a CUDA built-in vector type, derived from the basic inte-
 ger type. It is a structure containing three unsigned integers, and the 1st, 2nd, and 3rd components
 are accessible through the fi elds x, y, and z respectively.
-```shell
+```CUDA
 blockIdx.x
 blockIdx.y
 blockIdx.z
@@ -41,7 +41,7 @@ threadIdx.z
 ```
 
 The code example:
-```shell
+```CUDA
  /* key word/fucntion: dim3 block, grid
  * Author: Artur D. Nasyrov
  * Bauman Moscow State Technical University
